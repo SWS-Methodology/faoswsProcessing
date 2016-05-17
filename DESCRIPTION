@@ -8,7 +8,7 @@ Depends:
     R (>= 3.3.0),
     data.table (>= 1.9.6)
 Suggests:
-    magrittr
+    magrittr,
     dplyr
 License: FAO
 Encoding: UTF-8
