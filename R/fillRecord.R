@@ -21,6 +21,7 @@
 ##'     of non-existing record.
 ##'
 ##' @export
+##' @import faoswsUtil
 ##'
 
 fillRecord = function(data,

@@ -7,7 +7,7 @@
 ##' @aliases faoswsProcessing
 ##' @author Michael C. J. Kao
 ##'
-##' @import data.table
+##' @import data.table faoswsFlag
 ##'
 
 NULL
