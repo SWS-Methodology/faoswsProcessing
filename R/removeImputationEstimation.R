@@ -30,7 +30,10 @@
 ##' @export
 ##'
 
-removeImputationEstimation = function(data, valueVar, observationFlagVar, methodFlagVar,
+removeImputationEstimation = function(data,
+                                      valueVar,
+                                      observationFlagVar,
+                                      methodFlagVar,
                                       missingObservationFlag = "M",
                                       missingMethodFlag = "u",
                                       imputationEstimationObservationFlag = "I",
