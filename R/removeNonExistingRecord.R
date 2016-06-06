@@ -24,17 +24,19 @@
 ##'
 
 removeNonExistingRecord = function(data,
-                             areaVar = "geographicAreaM49",
-                             itemVar = "measuredItemCPC",
-                             elementVar = "measuredElement",
-                             yearVar = "timePointYears",
-                             flagObsVar = "flagObservationStatus",
-                             flagMethodVar = "flagMethod",
-                             valueVar = "Value"){
+                                   areaVar = "geographicAreaM49",
+                                   itemVar = "measuredItemCPC",
+                                   elementVar = "measuredElement",
+                                   yearVar = "timePointYears",
+                                   flagObsVar = "flagObservationStatus",
+                                   flagMethodVar = "flagMethod",
+                                   valueVar = "Value"){
+    dataCopy = copy(data)
+
     requiredColumn = c(areaVar, itemVar, elementVar, yearVar,
                        flagObsVar, flagMethodVar, valueVar)
-    if(!all(requiredColumn %in% colnames(data)))
+    if(!all(requiredColumn %in% colnames(dataCopy)))
         stop("Required column not in data, data has to be normalised!")
 
-    data[!is.na(data[[flagObsVar]]) & !is.na(data[[flagMethodVar]]), ]
+    dataCopy[!is.na(dataCopy[[flagObsVar]]) & !is.na(dataCopy[[flagMethodVar]]), ]
 }

@@ -38,23 +38,24 @@ removeImputationEstimation = function(data,
                                       missingMethodFlag = "u",
                                       imputationEstimationObservationFlag = "I",
                                       imputationEstimationMethodFlag = "e"){
+    dataCopy = copy(data)
 
     ## Data Quality Checks
-    stopifnot(is(data, "data.table"))
+    stopifnot(is(dataCopy, "data.table"))
     if(length(imputationEstimationObservationFlag) != 1 |
        length(imputationEstimationMethodFlag) != 1)
         stop("The observation and the flag method should be a single character, ",
              "they determine a single unique combination")
 
-    if(all(c(valueVar, observationFlagVar, methodFlagVar) %in% colnames(data))){
+    if(all(c(valueVar, observationFlagVar, methodFlagVar) %in% colnames(dataCopy))){
         imputedIndex =
-            data[[observationFlagVar]] == imputationEstimationObservationFlag &
-            data[[methodFlagVar]] == imputationEstimationMethodFlag
-        data[imputedIndex, `:=`(c(valueVar, observationFlagVar, methodFlagVar),
+            dataCopy[[observationFlagVar]] == imputationEstimationObservationFlag &
+            dataCopy[[methodFlagVar]] == imputationEstimationMethodFlag
+        dataCopy[imputedIndex, `:=`(c(valueVar, observationFlagVar, methodFlagVar),
                                 list(NA, missingObservationFlag,
                                      missingMethodFlag))]
     } else {
-        warning("Selected columns are not present, no processing is performed")
+        stop("Selected columns are not present")
     }
-    invisible(data)
+    dataCopy
 }

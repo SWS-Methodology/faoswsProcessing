@@ -31,7 +31,7 @@ cases.}
 }
 \value{
 No value is returned.  However, the object "data" which was passed
-to this function is modified.  In fact, it's actually overwritten if 
+to this function is modified.  In fact, it's actually overwritten if
 environment = parent.frame(1), the default.
 }
 \description{

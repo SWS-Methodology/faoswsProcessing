@@ -31,18 +31,20 @@ removeCalculated = function(data,
                             missingObservationFlag = "M",
                             missingMethodFlag = "u",
                             calculatedMethodFlag = "i"){
-    ## Data Quality Checks
-    stopifnot(is(data, "data.table"))
+    dataCopy = copy(data)
 
-    if(all(c(valueVar, observationFlagVar, methodFlagVar) %in% colnames(data))){
+    ## Data Quality Checks
+    stopifnot(is(dataCopy, "data.table"))
+
+    if(all(c(valueVar, observationFlagVar, methodFlagVar) %in% colnames(dataCopy))){
         calculatedIndex =
-            data[[methodFlagVar]] == calculatedMethodFlag
-        data[calculatedIndex,
-             `:=`(c(valueVar, observationFlagVar, methodFlagVar),
-                  list(NA, missingObservationFlag, missingMethodFlag))]
+            dataCopy[[methodFlagVar]] == calculatedMethodFlag
+        dataCopy[calculatedIndex,
+                 `:=`(c(valueVar, observationFlagVar, methodFlagVar),
+                      list(NA, missingObservationFlag, missingMethodFlag))]
     } else {
-        warning("Selected columns are not present, no processing is performed")
+        stop("Selected columns are not present")
     }
-    invisible(data)
+    dataCopy
 }
 

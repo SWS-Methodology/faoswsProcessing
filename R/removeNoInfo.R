@@ -23,25 +23,27 @@
 ##' cases.
 ##'
 ##' @return No value is returned.  However, the object "data" which was passed
-##' to this function is modified.  In fact, it's actually overwritten if 
+##' to this function is modified.  In fact, it's actually overwritten if
 ##' environment = parent.frame(1), the default.
 ##'
 ##' @export
-##' 
+##'
 
 removeNoInfo = function (data, value, observationFlag, byKey,
-    environment = parent.frame(1)){
-    
-    ### Data Quality Checks
-    stopifnot(c(value, observationFlag) %in% colnames(data))
+                         environment = parent.frame(1)){
+
+    dataCopy = copy(data)
+
+    ## Data Quality Checks
+    stopifnot(c(value, observationFlag) %in% colnames(dataCopy))
     stopifnot(is(environment, "environment"))
-    
-    info = data[, rep(containInfo(value = get(value),
-                                  observationFlag = get(observationFlag)),
-        NROW(.SD)), by = c(byKey)]$V1
-    
-    #Assign the new data.table to environment
-    dataTableName = as.character(match.call()$data)
-    assign(x = dataTableName, value = data[info,],
-        envir = environment)
+
+    info = dataCopy[, rep(containInfo(value = get(value),
+                                      observationFlag = get(observationFlag)),
+                          NROW(.SD)), by = c(byKey)]$V1
+
+    ## Assign the new data.table to environment
+    dataTableName = as.character(match.call()$dataCopy)
+    assign(x = dataTableName, value = dataCopy[info,],
+           envir = environment)
 }
