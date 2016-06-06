@@ -43,7 +43,7 @@ removeNoInfo = function (data, value, observationFlag, byKey,
                           NROW(.SD)), by = c(byKey)]$V1
 
     ## Assign the new data.table to environment
-    dataTableName = as.character(match.call()$dataCopy)
+    dataTableName = as.character(match.call()$data)
     assign(x = dataTableName, value = dataCopy[info,],
            envir = environment)
 }
