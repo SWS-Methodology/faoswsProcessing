@@ -40,7 +40,7 @@ preProcessing = function(data,
 
     if(dropNonExistingRecord){
         dataCopy =
-            dataCopy[!is.na(dataWithout0M[["flagObservationStatus"]]), ]
+            dataCopy[!is.na(dataCopy[["flagObservationStatus"]]), ]
     }
 
 
