@@ -1,10 +1,12 @@
 ##' This function performs manipulation of the data that are standard
 ##' after the data is retrieved from the data base.
 ##'
-##' NOTE (Michael): The data is assumed to be normalised.
-##'
 ##' @param data The data.table object
 ##' @param normalised logical, whether the data is normalised
+##' @param dropNonExistingRecord logical, whether non existing records should be
+##'     droped. Non-existing records are those having flagObservationStatus and
+##'     flagMethod have the value NA. This can be generated from denormalising
+##'     the data or occassionaly returned by the GetData function.
 ##' @param denormalisedKey optional, only required if the input data is not
 ##'     normalised.It is the name of the key that denormalises the data.
 ##'
@@ -16,6 +18,7 @@
 
 preProcessing = function(data,
                          normalised = TRUE,
+                         dropNonExistingRecord = TRUE,
                          denormalisedKey = "measuredElement"){
 
     dataCopy = copy(data)
@@ -32,16 +35,22 @@ preProcessing = function(data,
     ## Converting year to numeric for modelling
     dataCopy[, `:=`(c("timePointYears"), as.numeric(.SD[["timePointYears"]]))]
 
-    dataWithout0M =
+    dataCopy =
         remove0M(dataCopy, valueVars = "Value", flagVars = "flagObservationStatus")
 
-    if(any(is.na(dataWithout0M$flagObservationStatus))){
+    if(dropNonExistingRecord){
+        dataCopy =
+            dataCopy[!is.na(dataWithout0M[["flagObservationStatus"]]), ]
+    }
+
+
+    if(any(is.na(dataCopy[["flagObservationStatus"]]))){
         stop("There are non-existing records, please fill them with the ",
-             "fillRecord() function")
+             "fillRecord() function or remove them from the data")
     }
 
     if(!normalised){
-        dataWithout0M = denormalise(dataWithout0M, denormalisedKey)
+        dataCopy = denormalise(dataCopy, denormalisedKey)
     }
-    dataWithout0M
+    dataCopy
 }
