@@ -42,7 +42,5 @@ expandYear = function(data,
         merge(completeBasis, data, by = colnames(completeBasis), all.x = TRUE)
     expandedData[, `:=`("emptyTimeSeries", sum(is.na(.SD[[valueVar]])) == .N),
                  by = key]
-    reducedData = expandedData[!expandedData$emptyTimeSeries, ]
-    reducedData[, `:=`("emptyTimeSeries", NULL)]
-    reducedData
+    expandedData
 }
