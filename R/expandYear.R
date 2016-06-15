@@ -32,7 +32,7 @@ expandYear = function(data,
                       yearVar = "timePointYears",
                       valueVar = "Value"){
     key = c(areaVar, elementVar, itemVar)
-    keyDataFrame = data[, key, with = FALSE]
+    keyDataFrame = unique(data[, key, with = FALSE])
     yearDataFrame = data.frame(unique(data[[yearVar]]))
     colnames(yearDataFrame) = yearVar
 
@@ -40,7 +40,5 @@ expandYear = function(data,
         data.table(merge.data.frame(keyDataFrame, yearDataFrame))
     expandedData =
         merge(completeBasis, data, by = colnames(completeBasis), all.x = TRUE)
-    expandedData[, `:=`("emptyTimeSeries", sum(is.na(.SD[[valueVar]])) == .N),
-                 by = key]
     expandedData
 }
