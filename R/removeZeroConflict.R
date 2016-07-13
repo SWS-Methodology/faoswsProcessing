@@ -50,11 +50,11 @@ removeZeroConflict = function(data, value1, value2, observationFlag1,
 
         ## For problematic observations, set the zero value to missing.
         dataCopy[filter1 , `:=`(c(value1, observationFlag1, methodFlag1),
-                                as.list(c(NA_real_, missingObservationFlag,
-                                          missingMethodFlag)))]
+                                list(NA_real_, missingObservationFlag,
+                                          missingMethodFlag))]
         dataCopy[filter2 , `:=`(c(value2, observationFlag2, methodFlag2),
-                                as.list(c(NA_real_, missingObservationFlag,
-                                          missingMethodFlag)))]
+                                list(NA_real_, missingObservationFlag,
+                                          missingMethodFlag))]
     } else {
         warning("Selected columns are not present, no processing is performed")
     }
