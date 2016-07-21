@@ -20,6 +20,8 @@
 ##' placed in the observation flag columns to signify a missing value.
 ##' @param missingMethodFlag The flag (character value) which should be placed
 ##' in the method flag columns to signify a missing value.
+##' @param getSummary logic It is a logic parameter, if it is set to TRUE you can
+##'  display on the console messages about how many items have been modified
 ##'
 ##' @return No value is returned.  However, the object "data" which was passed
 ##' to this function is modified (some values are marked as missing if the have
@@ -31,7 +33,8 @@
 removeZeroConflict = function(data, value1, value2, observationFlag1,
                               observationFlag2, methodFlag1, methodFlag2,
                               missingObservationFlag = "M",
-                              missingMethodFlag = "u"){
+                              missingMethodFlag = "u",
+                              getSummary=FALSE){
     dataCopy = copy(data)
 
     ### Data Quality Checks
@@ -48,6 +51,14 @@ removeZeroConflict = function(data, value1, value2, observationFlag1,
         filter1 = dataCopy[, get(value1) == 0 & get(value2) != 0]
         filter2 = dataCopy[, get(value1) != 0 & get(value2) == 0]
 
+
+        dimFilter1= dim(dataCopy[filter1 ,])
+        dimFilter2= dim(dataCopy[filter2 ,])
+
+        message("Number of item with value1=0 and value2 !=0   ", dimFilter1[1])
+
+        message("Number of item with value1!=0 and value2 =0   ", dimFilter2[1])
+
         ## For problematic observations, set the zero value to missing.
         dataCopy[filter1 , `:=`(c(value1, observationFlag1, methodFlag1),
                                 list(NA_real_, missingObservationFlag,
@@ -55,6 +66,15 @@ removeZeroConflict = function(data, value1, value2, observationFlag1,
         dataCopy[filter2 , `:=`(c(value2, observationFlag2, methodFlag2),
                                 list(NA_real_, missingObservationFlag,
                                           missingMethodFlag))]
+
+        if(getSummary){
+          message("Number of item with value1=0 and value2 !=0:   ", dimFilter1[1])
+
+          message("Number of item with value1!=0 and value2 =0:  ", dimFilter2[1])
+
+
+        }
+
     } else {
         warning("Selected columns are not present, no processing is performed")
     }
