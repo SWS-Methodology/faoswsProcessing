@@ -5,7 +5,8 @@
 \title{This function removes yield that bears the value zero and replace with
 missing value.}
 \usage{
-removeZeroYield(data, yieldValue, yieldObsFlag, yieldMethodFlag)
+removeZeroYield(data, yieldValue, yieldObsFlag, yieldMethodFlag,
+  getSummary = FALSE)
 }
 \arguments{
 \item{data}{The dataset}
@@ -16,6 +17,9 @@ removeZeroYield(data, yieldValue, yieldObsFlag, yieldMethodFlag)
 of yield}
 
 \item{yieldMethodFlag}{The column corresponding to the method flag of yield}
+
+\item{getSummary}{logic It is a logic parameter, if it is set to TRUE you can
+display on the console messages about how many items have been modified}
 }
 \value{
 A data table where all entries with zero yield are replaced with NA.

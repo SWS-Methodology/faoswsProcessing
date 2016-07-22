@@ -6,7 +6,7 @@
 \usage{
 removeZeroConflict(data, value1, value2, observationFlag1, observationFlag2,
   methodFlag1, methodFlag2, missingObservationFlag = "M",
-  missingMethodFlag = "u")
+  missingMethodFlag = "u", getSummary = FALSE)
 }
 \arguments{
 \item{data}{The data table object.}
@@ -32,6 +32,9 @@ placed in the observation flag columns to signify a missing value.}
 
 \item{missingMethodFlag}{The flag (character value) which should be placed
 in the method flag columns to signify a missing value.}
+
+\item{getSummary}{logic It is a logic parameter, if it is set to TRUE you can
+display on the console messages about how many items have been modified}
 }
 \value{
 No value is returned.  However, the object "data" which was passed
