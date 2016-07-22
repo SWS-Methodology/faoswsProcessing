@@ -52,7 +52,7 @@ removeNonProtectedFlag = function(data,
 
 
 
-    dataCopy = dataCopy[,flagCombination:=paste(observationFlagVar, methodFlagVar, sep = ";")]
+    dataCopy = dataCopy[,flagCombination:=paste(get(observationFlagVar), get(methodFlagVar), sep = ";")]
     NonprotectedFlagCombinations=NonprotectedFlag[,combination]
 
     imputedIndex=dataCopy$flagCombination %in% NonprotectedFlagCombinations
