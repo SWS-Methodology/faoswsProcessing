@@ -22,6 +22,7 @@
 ##' @details flagValidTable Table containing valid and protected flag combination.
 ##'  This table is generally recorded into the Flag package.
 ##'
+##' @export
 
 
 removeNonProtectedFlag = function(data,
