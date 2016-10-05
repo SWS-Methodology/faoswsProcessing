@@ -46,8 +46,8 @@ removeInvalidDates = function(data, context = swsContext.datasets[[1]]){
     dataCopy = merge(dataCopy, areaValidRange, by = "geographicAreaM49", all.x = TRUE)
     dataCopy[, date := as.Date(paste0(timePointYears, "-01-01",
                                   format = "%Y-%m-%d"))]
-    dataCopy = dataCopy[is.na(startDate) | date > startDate, ]
-    dataCopy = dataCopy[is.na(endDate) | date < endDate, ]
+    dataCopy = dataCopy[is.na(startDate) | date >= startDate, ]
+    dataCopy = dataCopy[is.na(endDate) | date <= endDate, ]
     dataCopy[, c("startDate", "endDate", "date") := NULL]
     dataCopy
 }
