@@ -62,7 +62,7 @@ removeNonProtectedFlag = function(data,
                                 list(NA_real_, missingObservationFlag,
                                      missingMethodFlag))]
 
-
+    dataCopy[, flagCombination:=NULL]
 
 
 
