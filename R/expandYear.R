@@ -30,11 +30,23 @@ expandYear = function(data,
                       elementVar = "measuredElement",
                       itemVar = "measuredItemCPC",
                       yearVar = "timePointYears",
-                      valueVar = "Value"){
+                      valueVar = "Value",
+                      newYears=NULL){
     key = c(areaVar, elementVar, itemVar)
     keyDataFrame = unique(data[, key, with = FALSE])
     yearDataFrame = data.frame(unique(data[[yearVar]]))
     colnames(yearDataFrame) = yearVar
+
+    if(!is.null(newYears)){
+
+      newYears=data.frame(yearVar=newYears)
+      setnames(newYears, "yearVar", yearVar)
+
+      yearDataFrame=rbind(yearDataFrame,newYears)
+      yearDataFrame=unique(yearDataFrame)
+
+    }
+
 
     completeBasis =
         data.table(merge.data.frame(keyDataFrame, yearDataFrame))
