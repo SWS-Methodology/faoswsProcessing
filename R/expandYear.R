@@ -34,19 +34,15 @@ expandYear = function(data,
                       newYears=NULL){
     key = c(areaVar, elementVar, itemVar)
     keyDataFrame = unique(data[, key, with = FALSE])
-    yearDataFrame = data.frame(unique(data[[yearVar]]))
-    colnames(yearDataFrame) = yearVar
-
+    yearDataFrame = unique(data[,get(yearVar)])
     if(!is.null(newYears)){
 
-      newYears=data.frame(yearVar=newYears)
-      setnames(newYears, "yearVar", yearVar)
-
-      yearDataFrame=rbind(yearDataFrame,newYears)
-      yearDataFrame=unique(yearDataFrame)
+      yearDataFrame=unique(c(yearDataFrame, newYears, newYears-1, newYears-2))
 
     }
 
+    yearDataFrame=data.table(yearVar=yearDataFrame)
+    colnames(yearDataFrame) = yearVar
 
     completeBasis =
         data.table(merge.data.frame(keyDataFrame, yearDataFrame))
