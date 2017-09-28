@@ -32,8 +32,12 @@ expandYear = function(data,
                       yearVar = "timePointYears",
                       valueVar = "Value",
                       newYears=NULL){
-    key = c(areaVar, elementVar, itemVar)
-    keyDataFrame = unique(data[, key, with = FALSE])
+    key = c(elementVar, areaVar,  itemVar)
+    keyDataFrame = data[, key, with = FALSE]
+
+    keyDataFrame=keyDataFrame[with(keyDataFrame, order(get(key)))]
+    keyDataFrame=keyDataFrame[!duplicated(keyDataFrame)]
+
     yearDataFrame = unique(data[,get(yearVar)])
     if(!is.null(newYears)){
 
