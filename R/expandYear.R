@@ -50,7 +50,8 @@ expandYear = function(data,
 
     completeBasis =
         data.table(merge.data.frame(keyDataFrame, yearDataFrame))
-    expandedData =
-        merge(completeBasis, data, by = colnames(completeBasis), all.x = TRUE)
+    expandedData = merge(completeBasis, data, by = colnames(completeBasis), all.x = TRUE)
+    expandedData = fillRecord(expandedData)
+
     expandedData
 }
