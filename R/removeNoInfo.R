@@ -3,7 +3,7 @@
 ##' The information contained within a set of index is calculated
 ##' based on whether a non-zero value exist. If the data contains only
 ##' zero and missing value then it is considered to contain no
-##' imformation for imputation.
+##' information for imputation.
 ##'
 ##' @param data A data.table object containing the data of interest.
 ##' @param value The column name of the value of the variable.

@@ -31,6 +31,8 @@ expandYear = function(data,
                       itemVar = "measuredItemCPC",
                       yearVar = "timePointYears",
                       valueVar = "Value",
+                      obsflagVar="flagObservationStatus",
+                      methFlagVar="flagMethod",
                       newYears=NULL){
     key = c(elementVar, areaVar,  itemVar)
     keyDataFrame = data[, key, with = FALSE]
@@ -53,5 +55,39 @@ expandYear = function(data,
     expandedData = merge(completeBasis, data, by = colnames(completeBasis), all.x = TRUE)
     expandedData = fillRecord(expandedData)
 
-    expandedData
+##------------------------------------------------------------------------------------------------------------------
+    ## control closed series: if in the data pulled from the SWS, the last protected value is flagged as (M,-).
+    ## In this situation we do not have to expand the session with (M, u), but with (M, -) in order to
+    ## avoid that the series is imputed for the new year
+
+    ## 1. add a column containing the last year for which it is available a PROTECTED value
+    seriesToBlock=expandedData[(get(methFlagVar)!="u"),]
+    #seriesToBlock[,lastYearAvailable:=max(timePointYears), by=c( "geographicAreaM49","measuredElement","measuredItemCPC")]
+    seriesToBlock[,lastYearAvailable:=max(get(yearVar)), by=key]
+    ## 2. build the portion of data that has to be overwritten
+
+    seriesToBlock[,flagComb:=paste(get(obsflagVar),get(methFlagVar), sep = ";")]
+    seriesToBlock=seriesToBlock[get(yearVar)==lastYearAvailable & flagComb=="M;-"]
+
+
+    ##I have to expand the portion to include all the yers up to the last year
+  if(nrow(seriesToBlock)>0){
+    seriesToBlock=seriesToBlock[, {max_year = max(as.integer(.SD[,timePointYears]))
+    data.table(timePointYears = seq.int(max_year + 1, newYears),
+               Value = NA_real_,
+               flagObservationStatus = "M",
+               flagMethod = "-")[max_year < newYears]},  by = key]
+
+    ##I have to expand the portion to include all the yers up to the last year
+    expandedData=
+      merge(expandedData, seriesToBlock,
+            by=c( "geographicAreaM49", "measuredElement", "measuredItemCPC", "timePointYears"),
+            all.x=TRUE, suffixes = c("","_MDash"))
+
+    expandedData[!is.na(flagMethod_MDash),flagMethod:=flagMethod_MDash]
+    expandedData=expandedData[,colnames(data),with=FALSE]
+  }
+
+
+  expandedData
 }
