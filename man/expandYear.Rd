@@ -6,7 +6,9 @@
 \usage{
 expandYear(data, areaVar = "geographicAreaM49",
   elementVar = "measuredElement", itemVar = "measuredItemCPC",
-  yearVar = "timePointYears", valueVar = "Value", newYears = NULL)
+  yearVar = "timePointYears", valueVar = "Value",
+  obsflagVar = "flagObservationStatus", methFlagVar = "flagMethod",
+  newYears = NULL)
 }
 \arguments{
 \item{data}{The dataset}

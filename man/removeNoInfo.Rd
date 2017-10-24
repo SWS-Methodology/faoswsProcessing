@@ -38,6 +38,6 @@ environment = parent.frame(1), the default.
 The information contained within a set of index is calculated
 based on whether a non-zero value exist. If the data contains only
 zero and missing value then it is considered to contain no
-imformation for imputation.
+information for imputation.
 }
 
