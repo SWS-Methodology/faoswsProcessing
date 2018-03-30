@@ -19,6 +19,8 @@
 ##' @param denormalisedKey optional, only required if the input data is not
 ##'     normalised.It is the name of the key that denormalises the data.
 ##'
+##' @keepDataUntil
+##'
 ##' @details flagValidTable Table containing valid and protected flag combination.
 ##'  This table is generally recorded into the Flag package.
 ##'
@@ -29,11 +31,13 @@ removeNonProtectedFlag = function(data,
                                   valueVar= "Value",
                                   observationFlagVar="flagObservationStatus",
                                   methodFlagVar="flagMethod",
+                                  yearVar="timePointYears",
                                   missingObservationFlag = "M",
                                   missingMethodFlag = "u",
                                   normalised= TRUE,
                                   denormalisedKey = "measuredElement",
-                                  flagValidTable= NULL ){
+                                  flagValidTable= NULL,
+                                  keepDataUntil=NULL){
 
   if(is.null(flagValidTable)){
     flagValidTable <- faoswsFlag::flagValidTable
@@ -52,9 +56,45 @@ removeNonProtectedFlag = function(data,
     NonprotectedFlag[, combination := paste(flagObservationStatus, flagMethod, sep = ";")]
 
 
-
     dataCopy = dataCopy[,flagCombination:=paste(get(observationFlagVar), get(methodFlagVar), sep = ";")]
     NonprotectedFlagCombinations=NonprotectedFlag[,combination]
+
+
+    if(!is.null(keepDataUntil)){
+    ##Check if the year specified inthe keepDataUntil parametre is within the time range of the dataset
+      maxYear=max(dataCopy[,get(yearVar)])
+      minYear=min(dataCopy[,get(yearVar)])
+
+      if(!(keepDataUntil>=minYear & keepDataUntil<maxYear)){
+        stop("The parameter keepDataUntil is not feasible")
+      }else{
+
+
+        imputedIndex=dataCopy$flagCombination %in% NonprotectedFlagCombinations & dataCopy[,get(yearVar)>=keepDataUntil]
+
+        dataCopy[imputedIndex, `:=`(c(valueVar, observationFlagVar, methodFlagVar),
+                                    list(NA_real_, missingObservationFlag,
+                                         missingMethodFlag))]
+
+        dataCopy[, flagCombination:=NULL]
+
+
+
+
+        if(!normalised){
+          dataCopy = denormalise(dataCopy, denormalisedKey)
+        }
+
+        dataCopy
+
+
+
+
+
+      }
+
+
+    }else{
 
     imputedIndex=dataCopy$flagCombination %in% NonprotectedFlagCombinations
 
@@ -73,7 +113,7 @@ removeNonProtectedFlag = function(data,
 
     dataCopy
 
-
+  }
 
   }
 
