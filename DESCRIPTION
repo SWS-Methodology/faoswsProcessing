@@ -1,7 +1,7 @@
 Package: faoswsProcessing
 Title: Standard data manipulation procedure for SWS.
-Version: 0.1.14
-Date: 2017-10-24
+Version: 0.1.15
+Date: 2018-04-03
 Authors@R: c(person("Michael C. J.", "Kao", email = "michael.kao@fao.org", role = "aut"), person("Francesca
             Rosa", email = "francesca.rosa@fao.org", role = "cre"))
 Description: The package provides selection of standard processing functions for the Statistical Working System
