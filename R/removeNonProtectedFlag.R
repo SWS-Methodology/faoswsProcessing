@@ -19,7 +19,10 @@
 ##' @param denormalisedKey optional, only required if the input data is not
 ##'     normalised.It is the name of the key that denormalises the data.
 ##'
-##' @keepDataUntil
+##' @param keepDataUntil numeric It is possible to delete non-protected flag starting from a
+##'         specific year. This feature is important when we need to impute missing values
+##'         keeping data (protected or not) up to a specific year. This parameter allows specifying
+##'         the year from which we want to start deleting non-protected figures.
 ##'
 ##' @details flagValidTable Table containing valid and protected flag combination.
 ##'  This table is generally recorded into the Flag package.
