@@ -7,9 +7,10 @@ with ObservationFlag=M and methodFlag=u}
 \usage{
 removeNonProtectedFlag(data, valueVar = "Value",
   observationFlagVar = "flagObservationStatus",
-  methodFlagVar = "flagMethod", missingObservationFlag = "M",
-  missingMethodFlag = "u", normalised = TRUE,
-  denormalisedKey = "measuredElement", flagValidTable = NULL)
+  methodFlagVar = "flagMethod", yearVar = "timePointYears",
+  missingObservationFlag = "M", missingMethodFlag = "u",
+  normalised = TRUE, denormalisedKey = "measuredElement",
+  flagValidTable = NULL, keepDataUntil = NULL)
 }
 \arguments{
 \item{data}{The data.table object to be manipulate}
@@ -35,6 +36,11 @@ containing imputation data that is removed.}
 
 \item{denormalisedKey}{optional, only required if the input data is not
 normalised.It is the name of the key that denormalises the data.}
+
+\item{keepDataUntil}{numeric It is possible to delete non-protected flag starting from a
+specific year. This feature is important when we need to impute missing values
+keeping data (protected or not) up to a specific year. This parameter allows specifying
+the year from which we want to start deleting non-protected figures.}
 }
 \description{
 This function has been built in order to transform all the values corresponding to non-protected in to NA
