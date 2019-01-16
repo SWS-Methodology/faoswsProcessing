@@ -53,7 +53,7 @@ expandYear = function(data,
     completeBasis =
         data.table(merge.data.frame(keyDataFrame, yearDataFrame))
     expandedData = merge(completeBasis, data, by = colnames(completeBasis), all.x = TRUE)
-    expandedData = fillRecord(expandedData)
+    expandedData = fillRecord(expandedData,areaVar=areaVar,itemVar=itemVar, yearVar=yearVar )
 
 ##------------------------------------------------------------------------------------------------------------------
     ## control closed series: if in the data pulled from the SWS, the last protected value is flagged as (M,-).
