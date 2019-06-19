@@ -81,7 +81,7 @@ expandYear = function(data,
     ##I have to expand the portion to include all the yers up to the last year
     expandedData=
       merge(expandedData, seriesToBlock,
-            by=c( "geographicAreaM49", "measuredElement", "measuredItemCPC", "timePointYears"),
+            by =  c(areaVar, elementVar, itemVar, yearVar),
             all.x=TRUE, suffixes = c("","_MDash"))
 
     expandedData[!is.na(flagMethod_MDash),flagMethod:=flagMethod_MDash]
