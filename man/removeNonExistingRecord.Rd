@@ -4,10 +4,16 @@
 \alias{removeNonExistingRecord}
 \title{Function to remove non-existing record}
 \usage{
-removeNonExistingRecord(data, areaVar = "geographicAreaM49",
-  itemVar = "measuredItemCPC", elementVar = "measuredElement",
-  yearVar = "timePointYears", flagObsVar = "flagObservationStatus",
-  flagMethodVar = "flagMethod", valueVar = "Value")
+removeNonExistingRecord(
+  data,
+  areaVar = "geographicAreaM49",
+  itemVar = "measuredItemCPC",
+  elementVar = "measuredElement",
+  yearVar = "timePointYears",
+  flagObsVar = "flagObservationStatus",
+  flagMethodVar = "flagMethod",
+  valueVar = "Value"
+)
 }
 \arguments{
 \item{data}{The data containing non-existing record}
@@ -39,4 +45,3 @@ Sometimes non-existing records (observation status flag and method flag and
 value all NA) are returned by the database, or can be created by
 denormalising the data. This function removes these records.
 }
-

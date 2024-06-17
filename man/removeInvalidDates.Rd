@@ -29,4 +29,3 @@ have data prior to 1992.  If the user attempts to write data to this
 country at a point in time prior to 1992, an error will occur.  This
 function contains the logic for removing such invalid country/year pairs.
 }
-

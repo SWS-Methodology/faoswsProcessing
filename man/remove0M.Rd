@@ -26,4 +26,3 @@ TODO (Michael): This function is similar to the function in the
                 object. This function should replace the original
                 one in the \pkg{faoswsUtil} package
 }
-

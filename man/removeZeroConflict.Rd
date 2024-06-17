@@ -4,9 +4,18 @@
 \alias{removeZeroConflict}
 \title{Remove Zero Conflicts}
 \usage{
-removeZeroConflict(data, value1, value2, observationFlag1, observationFlag2,
-  methodFlag1, methodFlag2, missingObservationFlag = "M",
-  missingMethodFlag = "u", getSummary = FALSE)
+removeZeroConflict(
+  data,
+  value1,
+  value2,
+  observationFlag1,
+  observationFlag2,
+  methodFlag1,
+  methodFlag2,
+  missingObservationFlag = "M",
+  missingMethodFlag = "u",
+  getSummary = FALSE
+)
 }
 \arguments{
 \item{data}{The data table object.}
@@ -47,4 +56,3 @@ variable is 0 and another is not, then both variables are marked as
 missing.  This is useful for variables which should always be zero
 concurrently, such as area harvested and production.
 }
-

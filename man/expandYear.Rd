@@ -4,11 +4,17 @@
 \alias{expandYear}
 \title{This function expands the range of the year variable.}
 \usage{
-expandYear(data, areaVar = "geographicAreaM49",
-  elementVar = "measuredElement", itemVar = "measuredItemCPC",
-  yearVar = "timePointYears", valueVar = "Value",
-  obsflagVar = "flagObservationStatus", methFlagVar = "flagMethod",
-  newYears = NULL)
+expandYear(
+  data,
+  areaVar = "geographicAreaM49",
+  elementVar = "measuredElement",
+  itemVar = "measuredItemCPC",
+  yearVar = "timePointYears",
+  valueVar = "Value",
+  obsflagVar = "flagObservationStatus",
+  methFlagVar = "flagMethod",
+  newYears = NULL
+)
 }
 \arguments{
 \item{data}{The dataset}
@@ -39,4 +45,3 @@ method flag remains NA. The reason behind this is so that after the
 processing, if the record can not be populated with imputation then it will
 be dropped and not saved back to the database.
 }
-

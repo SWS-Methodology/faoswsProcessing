@@ -2,8 +2,8 @@
 % Please edit documentation in R/faoswsProcessing-package.R
 \docType{package}
 \name{faoswsProcessing-package}
-\alias{faoswsProcessing}
 \alias{faoswsProcessing-package}
+\alias{faoswsProcessing}
 \title{Provide standardised processing procedures for data manipulation}
 \description{
 This package provides a family of functions to standardise data manipulation.
@@ -11,4 +11,3 @@ This package provides a family of functions to standardise data manipulation.
 \author{
 Michael C. J. Kao
 }
-

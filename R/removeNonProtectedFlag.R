@@ -25,7 +25,7 @@
 ##'         the year from which we want to start deleting non-protected figures.
 ##'
 ##' @details flagValidTable Table containing valid and protected flag combination.
-##'  This table is generally recorded into the Flag package.
+##'  The default is an outdated table temporarily kept for compatibility reasons.
 ##'
 ##' @export
 
@@ -39,11 +39,11 @@ removeNonProtectedFlag = function(data,
                                   missingMethodFlag = "u",
                                   normalised= TRUE,
                                   denormalisedKey = "measuredElement",
-                                  flagValidTable= NULL,
+                                  flagValidTable= ReadDatatable("valid_flags"),
                                   keepDataUntil=NULL){
 
   if(is.null(flagValidTable)){
-    flagValidTable <- faoswsFlag::flagValidTable
+    flagValidTable <- ReadDatatable("valid_flags")
   }
   dataCopy = copy(data)
 

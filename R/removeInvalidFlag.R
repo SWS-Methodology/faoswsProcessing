@@ -21,7 +21,7 @@
 ##' protected flag combinations
 ##'
 ##' @details flagValidTable Table containing valid and protected flag combination.
-##'  This table is generally recorded into the Flag package.
+##'  The default is an outdated table temporarily kept for compatibility reasons.
 ##'
 ##' @export
 
@@ -34,10 +34,10 @@ removeInvalidFlag = function(data,
                                   missingMethodFlag = "u",
                                   normalised= TRUE,
                                   denormalisedKey = "measuredElement",
-                                  flagValidTable= NULL ){
+                                  flagValidTable=ReadDatatable("valid_flags")){
 
   if(is.null(flagValidTable)){
-    flagValidTable <- faoswsFlag::flagValidTable
+    flagValidTable <- ReadDatatable("valid_flags")
   }
   dataCopy = copy(data)
 

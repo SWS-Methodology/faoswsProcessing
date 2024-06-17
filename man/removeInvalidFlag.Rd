@@ -5,11 +5,17 @@
 \title{This function has been built in order to transform all the values corresponding to ivalid flag combinations
 into NA M u and activate the imputation process.}
 \usage{
-removeInvalidFlag(data, valueVar = "Value",
+removeInvalidFlag(
+  data,
+  valueVar = "Value",
   observationFlagVar = "flagObservationStatus",
-  methodFlagVar = "flagMethod", missingObservationFlag = "M",
-  missingMethodFlag = "u", normalised = TRUE,
-  denormalisedKey = "measuredElement", flagValidTable = NULL)
+  methodFlagVar = "flagMethod",
+  missingObservationFlag = "M",
+  missingMethodFlag = "u",
+  normalised = TRUE,
+  denormalisedKey = "measuredElement",
+  flagValidTable = ReadDatatable("valid_flags")
+)
 }
 \arguments{
 \item{data}{The data.table object to be manipulate}
@@ -45,6 +51,5 @@ into NA M u and activate the imputation process.
 }
 \details{
 flagValidTable Table containing valid and protected flag combination.
- This table is generally recorded into the Flag package.
+ The default is an outdated table temporarily kept for compatibility reasons.
 }
-

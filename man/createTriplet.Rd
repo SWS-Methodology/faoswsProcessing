@@ -24,4 +24,3 @@ sparse data representation the element is not availble.
 \details{
 This function creates the temporary element that is required for processing.
 }
-

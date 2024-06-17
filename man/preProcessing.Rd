@@ -5,8 +5,12 @@
 \title{This function performs manipulation of the data that are standard
 after the data is retrieved from the data base.}
 \usage{
-preProcessing(data, normalised = TRUE, dropNonExistingRecord = TRUE,
-  denormalisedKey = "measuredElement")
+preProcessing(
+  data,
+  normalised = TRUE,
+  dropNonExistingRecord = TRUE,
+  denormalisedKey = "measuredElement"
+)
 }
 \arguments{
 \item{data}{The data.table object}
@@ -29,4 +33,3 @@ A data.table with standard pre processing steps
 This function performs manipulation of the data that are standard
 after the data is retrieved from the data base.
 }
-

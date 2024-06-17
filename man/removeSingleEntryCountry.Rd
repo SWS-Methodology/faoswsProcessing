@@ -24,4 +24,3 @@ NOTE (Michael): The application of the function is questionable. I
                 dataset. It is the best given the information set,
                 and we should aim to improve the data collection.
 }
-

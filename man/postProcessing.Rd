@@ -22,4 +22,3 @@ A data.table with standard post processing steps
 \description{
 NOTE (Michael): The data is assumed to be normalised.
 }
-

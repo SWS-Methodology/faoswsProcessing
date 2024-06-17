@@ -4,10 +4,16 @@
 \alias{fillRecord}
 \title{This function replaces non-existing records with missing records.}
 \usage{
-fillRecord(data, areaVar = "geographicAreaM49", itemVar = "measuredItemCPC",
-  elementVar = "measuredElement", yearVar = "timePointYears",
-  valueVar = "Value", flagObsVar = "flagObservationStatus",
-  flagMethodVar = "flagMethod")
+fillRecord(
+  data,
+  areaVar = "geographicAreaM49",
+  itemVar = "measuredItemCPC",
+  elementVar = "measuredElement",
+  yearVar = "timePointYears",
+  valueVar = "Value",
+  flagObsVar = "flagObservationStatus",
+  flagMethodVar = "flagMethod"
+)
 }
 \arguments{
 \item{data}{The dataset}
@@ -39,4 +45,3 @@ record in the database; this can also be created when denormalising data. We
 will replace is with a missing record representation where (Value = NA,
 flagObservationStatus = "M" and flagMethod = "u").
 }
-

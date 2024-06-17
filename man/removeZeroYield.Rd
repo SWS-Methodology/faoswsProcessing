@@ -5,8 +5,13 @@
 \title{This function removes yield that bears the value zero and replace with
 missing value.}
 \usage{
-removeZeroYield(data, yieldValue, yieldObsFlag, yieldMethodFlag,
-  getSummary = FALSE)
+removeZeroYield(
+  data,
+  yieldValue,
+  yieldObsFlag,
+  yieldMethodFlag,
+  getSummary = FALSE
+)
 }
 \arguments{
 \item{data}{The dataset}
@@ -28,4 +33,3 @@ A data table where all entries with zero yield are replaced with NA.
 By definition, yield can not be zero. When both area harvested and
 production are zero, it is a missing value.
 }
-

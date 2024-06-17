@@ -5,12 +5,19 @@
 \title{This function has been built in order to transform all the values corresponding to non-protected in to NA
 with ObservationFlag=M and methodFlag=u}
 \usage{
-removeNonProtectedFlag(data, valueVar = "Value",
+removeNonProtectedFlag(
+  data,
+  valueVar = "Value",
   observationFlagVar = "flagObservationStatus",
-  methodFlagVar = "flagMethod", yearVar = "timePointYears",
-  missingObservationFlag = "M", missingMethodFlag = "u",
-  normalised = TRUE, denormalisedKey = "measuredElement",
-  flagValidTable = NULL, keepDataUntil = NULL)
+  methodFlagVar = "flagMethod",
+  yearVar = "timePointYears",
+  missingObservationFlag = "M",
+  missingMethodFlag = "u",
+  normalised = TRUE,
+  denormalisedKey = "measuredElement",
+  flagValidTable = ReadDatatable("valid_flags"),
+  keepDataUntil = NULL
+)
 }
 \arguments{
 \item{data}{The data.table object to be manipulate}
@@ -48,6 +55,5 @@ with ObservationFlag=M and methodFlag=u
 }
 \details{
 flagValidTable Table containing valid and protected flag combination.
- This table is generally recorded into the Flag package.
+ The default is an outdated table temporarily kept for compatibility reasons.
 }
-

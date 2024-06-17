@@ -4,8 +4,13 @@
 \alias{removeNoInfo}
 \title{This function removes data with no information}
 \usage{
-removeNoInfo(data, value, observationFlag, byKey,
-  environment = parent.frame(1))
+removeNoInfo(
+  data,
+  value,
+  observationFlag,
+  byKey,
+  environment = parent.frame(1)
+)
 }
 \arguments{
 \item{data}{A data.table object containing the data of interest.}
@@ -40,4 +45,3 @@ based on whether a non-zero value exist. If the data contains only
 zero and missing value then it is considered to contain no
 information for imputation.
 }
-

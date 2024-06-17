@@ -4,9 +4,15 @@
 \alias{removeCalculated}
 \title{This function removes previous calculated values}
 \usage{
-removeCalculated(data, valueVar, observationFlagVar, methodFlagVar,
-  missingObservationFlag = "M", missingMethodFlag = "u",
-  calculatedMethodFlag = "i")
+removeCalculated(
+  data,
+  valueVar,
+  observationFlagVar,
+  methodFlagVar,
+  missingObservationFlag = "M",
+  missingMethodFlag = "u",
+  calculatedMethodFlag = "i"
+)
 }
 \arguments{
 \item{data}{The data.table object containing the values.}
@@ -42,4 +48,3 @@ This function removes previous calculated values
 The observation flag is not required, as previous calculated values
     can contain any observation flag due to flag aggregation.
 }
-

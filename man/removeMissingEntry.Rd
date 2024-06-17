@@ -15,4 +15,3 @@ A data table where flags with 'M' are removed.
 \description{
 This function filters data to remove missing entries.
 }
-

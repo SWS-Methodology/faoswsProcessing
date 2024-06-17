@@ -17,4 +17,3 @@ The filtered formula without biological and indigenous treatment.
 This function removes the entry which corresponds to indigenous and
 biological meats.
 }
-

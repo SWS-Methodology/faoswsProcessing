@@ -4,10 +4,16 @@
 \alias{removeImputationEstimation}
 \title{Function to remove prior imputation.}
 \usage{
-removeImputationEstimation(data, valueVar, observationFlagVar, methodFlagVar,
-  missingObservationFlag = "M", missingMethodFlag = "u",
+removeImputationEstimation(
+  data,
+  valueVar,
+  observationFlagVar,
+  methodFlagVar,
+  missingObservationFlag = "M",
+  missingMethodFlag = "u",
   imputationEstimationObservationFlag = "I",
-  imputationEstimationMethodFlag = "e")
+  imputationEstimationMethodFlag = "e"
+)
 }
 \arguments{
 \item{data}{The data.table object containing the values.}
@@ -49,4 +55,3 @@ Observations which have observationFlagVar == imputedFlag will be
     observation flag will be updated to missingObservationFlag, and the
     method flag will be updated to missingMethodFlag.
 }
-
