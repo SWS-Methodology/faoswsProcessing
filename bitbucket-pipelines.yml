@@ -1,0 +1,31 @@
+image: atlassian/pipelines-awscli
+
+pipelines:
+  default:
+
+      #get stat-ops
+      - step:
+          image: atlassian/default-image:2
+          name: Get the stat ops
+          script:
+            - git clone git@bitbucket.org:cioapps/sws-stat-ops.git --depth 1
+          artifacts:
+            - sws-stat-ops/**
+
+      #build the package
+      - step:
+          image: matteoterrinoni/rdev
+          name: build the package
+          script:
+            - chmod +x sws-stat-ops/aws/package/build.sh
+            - ./sws-stat-ops/aws/package/build.sh
+          artifacts:
+            - packages/**
+
+      #deploy
+      - step:
+          deployment: dev
+          name: deploy to s3
+          script:
+            - chmod +x sws-stat-ops/aws/package/deploy.sh
+            - ./sws-stat-ops/aws/package/deploy.sh
